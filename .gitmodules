@@ -1,3 +1,6 @@
 [submodule "googletest"]
 	path = googletest
 	url = https://github.com/google/googletest
+[submodule "optiga-nbt-lib-c"]
+	path = optiga-nbt-lib-c
+	url = https://github.com/Infineon/optiga-nbt-lib-c
