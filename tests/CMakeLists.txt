@@ -3,6 +3,7 @@ add_executable(
 
   door-tests.cpp
   timespec-tests.cpp
+  eventloop-tests.cpp
   
   event-edge-detector-tests.cpp
 
