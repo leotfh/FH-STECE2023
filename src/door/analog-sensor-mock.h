@@ -7,7 +7,7 @@ public:
     AnalogSensorMock();
     float get_value() const override;
     // for tests
-    void set_value(float value) const;
+    void set_value(float value);
 private:
     mutable float _value;
 };

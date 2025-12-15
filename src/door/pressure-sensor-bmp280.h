@@ -4,17 +4,19 @@
 #include <string>
 
 #include "analog-sensor.h"
+#include "utilities/i2c.h"  
 
 class BMP280 : public AnalogSensor
 {
 public:
     BMP280(const std::string& i2c_device = "/dev/i2c-1", unsigned address = 0x76);
-    ~BMP280();
+    ~BMP280() override;
 
     float get_value() const override;
+    void set_value(float value) override;  // Deklaration hinzufügen
 
 private:
-    int _fd;
+    I2C _i2c; 
     uint16_t _dig_T1;
     int16_t  _dig_T2;
     int16_t  _dig_T3;

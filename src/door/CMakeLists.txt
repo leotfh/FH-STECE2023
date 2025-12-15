@@ -59,6 +59,9 @@ add_library(
   ${DOOR_FILES}
 )
 
+# Verlinke die utilities-Bibliothek mit door
+target_link_libraries(door PRIVATE utilities)
+
 
 # build information (include path) for our users
 target_include_directories(
@@ -67,4 +70,5 @@ target_include_directories(
   INTERFACE
 
   ${CMAKE_CURRENT_SOURCE_DIR}/..                       # <-- users have to e.g. say #include <door/motor.h>
+  ${CMAKE_CURRENT_SOURCE_DIR}/../utilities  # Für #include <utilities/i2c.h>
 )
