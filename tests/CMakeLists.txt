@@ -1,7 +1,10 @@
 add_executable(
   door-tests
 
-  door-tests.cpp
+  door-init-tests.cpp
+  door-closed-open-tests.cpp
+  door-open-closed-tests.cpp
+
   timespec-tests.cpp
   eventloop-tests.cpp
   
@@ -11,14 +14,18 @@ add_executable(
   outputs-tests.cpp
 
   adc-mock-tests.cpp
-  pressure-mock-tests.cpp
 )
 target_link_libraries(
   door-tests
 
+  PRIVATE
   door
   utilities
   gtest_main
+
+  input_output_switch
+  motor
+  analog_stuff
 )
 add_test(
   NAME door-tests 
@@ -26,13 +33,12 @@ add_test(
 )
 
 add_executable(
-  motor-tests   # Du kannst es nennen, wie du willst
+  motor-tests   
   motor-tests.cpp
 )
 target_link_libraries(
   motor-tests
-  door                  # Es braucht die 'door'-Bibliothek
-  # KEIN gtest_main, da es eine eigene main() hat!
+  door                
 )
 
 # add_executable(motorLED-tests motorLED-tests.cpp)
@@ -78,6 +84,7 @@ add_test(
 add_executable(bmp280_test bmp280-test.cpp)
 add_executable(adc_ads1115_test adc-ads1115-test.cpp)
 add_executable(hysteresis_hw_test hysteresis_hw_test.cpp)
+add_executable(input-edge-event-test input-edge-event-test.cpp)
 
 target_link_libraries(
   bmp280_test
@@ -99,6 +106,14 @@ target_link_libraries(
 
   PRIVATE
   door
+)
+
+target_link_libraries(
+  input-edge-event-test
+
+  PRIVATE
+  door
+  utilities
 )
 
 add_test(
